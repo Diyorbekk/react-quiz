@@ -1,7 +1,15 @@
 import React from 'react'
 import classes from './FinishedQuiz.module.css'
+import Button from "../UI/Button/Button";
 
 function FinishedQuiz(props) {
+    const  successCount = Object.keys(props.results).reduce((total, key) => {
+        if (props.results[key] === 'success') {
+            total++
+        }
+        return total
+    }, 0);
+
     return(
         <div className={classes.FinishedQuiz}>
             <ul>
@@ -24,24 +32,14 @@ function FinishedQuiz(props) {
                         )
                     } )
                 }
-                {/*<li>*/}
-                {/*    <strong>1. </strong>*/}
-                {/*    GGG*/}
-                {/*    <i className={'fa fa-times ' + classes.error} />*/}
-                {/*</li>*/}
-
-                {/*<li>*/}
-                {/*    <strong>2. </strong>*/}
-                {/*    GGG*/}
-                {/*    <i className={'fa fa-check ' + classes.success} />*/}
-                {/*</li>*/}
             </ul>
 
             <p>
-                To'g'ri javob 10 dan 4 tasi
+                To'g'ri javob {props.quiz.length} dan {successCount} tasiga
             </p>
             <div>
-                <button>Takrorlash</button>
+                <Button onClick={props.onRetry} type="primary">Takrorlash</Button>
+                <Button onClick={props.onRetry} type="success">Testlar ro'yxatiga o'ting</Button>
             </div>
         </div>
     )

@@ -11,7 +11,7 @@ function ActiveQuiz(props) {
                 {props.question}
             </span>
 
-            <small>{ props.quizLength} dan {props.answerNumber} tasi </small>
+            <small>{ props.quizLength} dan {props.answerNumber} chisi </small>
         </p>
 
        <AnswersList
