@@ -4,53 +4,53 @@ import ActiveQuiz from "../../components/ActiveQuiz/ActiveQuiz";
 import FinishedQuiz from "../../components/FinishedQuiz/FinishedQuiz";
 
 
-class Quiz extends  Component{
+class Quiz extends Component {
     state = {
         results: {}, // { [id]: 'success' : 'error' }
         isFinished: false,
         activeQuestion: 0,
         answerState: null, // { [id]: 'success' : 'error' }
         quiz: [
-                {
-                    question: 'Osmoni rangi qanday?',
-                    rightAnswerID: 2,
-                    id: 1,
-                    answers: [
-                        {text: 'Oq', id: 1},
-                        {text: 'Moviy', id: 2},
-                        {text: 'Qora', id: 3},
-                        {text: 'Yashil', id: 4},
-                    ]
-                },
-                {
-                    question: 'O`zbekistonning poytaxti?',
-                    rightAnswerID: 3,
-                    id: 2,
-                    answers: [
-                        {text: 'Samarqand', id: 1},
-                        {text: 'Jizzax', id: 2},
-                        {text: 'Toshkent', id: 3},
-                        {text: 'Andijon', id: 4},
-                    ]
-                }
-            ]
+            {
+                question: 'Osmoni rangi qanday?',
+                rightAnswerID: 2,
+                id: 1,
+                answers: [
+                    {text: 'Oq', id: 1},
+                    {text: 'Moviy', id: 2},
+                    {text: 'Qora', id: 3},
+                    {text: 'Yashil', id: 4},
+                ]
+            },
+            {
+                question: 'O`zbekistonning poytaxti?',
+                rightAnswerID: 3,
+                id: 2,
+                answers: [
+                    {text: 'Samarqand', id: 1},
+                    {text: 'Jizzax', id: 2},
+                    {text: 'Toshkent', id: 3},
+                    {text: 'Andijon', id: 4},
+                ]
+            }
+        ]
     };
 
     onAnswerClickHandler = answerId => {
-        if  (this.state.answerState){
+        if (this.state.answerState) {
             const key = Object.keys(this.state.answerState)[0];
 
-            if (this.state.answerState[key] === 'success'){
+            if (this.state.answerState[key] === 'success') {
                 return
             }
         }
 
 
         const question = this.state.quiz[this.state.activeQuestion];
-        const results = this.state.results
+        const results = this.state.results;
 
         if (question.rightAnswerID === answerId) {
-            if (!results[question.id]){
+            if (!results[question.id]) {
                 results[question.id] = 'success'
             }
             this.setState({
@@ -91,7 +91,7 @@ class Quiz extends  Component{
 
     retryHandler = () => {
         this.setState({
-            activeQuestion:0,
+            activeQuestion: 0,
             answerState: null,
             isFinished: false,
             results: {},
@@ -105,7 +105,7 @@ class Quiz extends  Component{
                     <h1>Hamma savolarga javob bering</h1>
                     {
                         this.state.isFinished
-                        ? <FinishedQuiz
+                            ? <FinishedQuiz
                                 results={this.state.results}
                                 quiz={this.state.quiz}
                                 onRetry={this.retryHandler}
