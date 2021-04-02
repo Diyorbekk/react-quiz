@@ -1,5 +1,5 @@
 {
-  "homepage": "http://Diyorbekk.github.io/react-quiz",
+  "homepage": "http://Diyorbekk.github.io/react-test-quiz",
   "name": "react-quiz",
   "version": "0.1.0",
   "private": true,
@@ -77,7 +77,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -b master -d build",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
