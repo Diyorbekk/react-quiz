@@ -5,7 +5,8 @@ import {
     FETCH_QUIZES_START,
     FETCH_QUIZES_SUCCESS,
     FINISH_QUIZ,
-    QUIZ_NEXT_QUESTION, QUIZ_RETRY,
+    QUIZ_NEXT_QUESTION,
+    QUIZ_RETRY,
     QUIZ_SET_STATE
 } from "./actionTypes";
 
@@ -125,7 +126,9 @@ export function quizAnswerClick(answerId) {
                 results[question.id] = 'success'
             }
 
-            dispatch(quizSetState({[answerId]: 'success'}, results))
+            dispatch(quizSetState({
+                [answerId]: 'success'
+            }, results))
 
             const timeout = window.setTimeout(() => {
                 if (isQuizFinished(state)) {
@@ -140,19 +143,21 @@ export function quizAnswerClick(answerId) {
 
         } else {
             results[question.id] = 'error';
-            dispatch(quizSetState({[answerId]: 'error'}, results))
+            dispatch(quizSetState({
+                [answerId]: 'error'
+            }, results))
 
             /* Xato bo'sa kengisiga o'tish */
 
-            // const timeout = window.setTimeout(() => {
-            //     if (isQuizFinished(state)) {
-            //         dispatch(finishQuiz())
-            //     } else {
-            //         dispatch(quizNextQuestion(state.activeQuestion + 1))
-            //     }
-            //
-            //     window.clearTimeout(timeout)
-            // }, 1000)
+            const timeout = window.setTimeout(() => {
+                if (isQuizFinished(state)) {
+                    dispatch(finishQuiz())
+                } else {
+                    dispatch(quizNextQuestion(state.activeQuestion + 1))
+                }
+
+                window.clearTimeout(timeout)
+            }, 1000)
 
         }
     }
